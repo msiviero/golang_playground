@@ -11,4 +11,4 @@ clean:
 	go clean
 
 grpc:
-	protoc --go-grpc_out=. --go_out=. --proto_path=./proto ./proto/*.proto google/protobuf/timestamp.proto google/protobuf/empty.proto 
+	protoc --go-grpc_out=. --go_out=. --proto_path=./proto ./proto/*.proto
