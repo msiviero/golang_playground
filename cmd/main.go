@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"mypackage/internal/app"
+
+	"dev.msiviero/example/internal/app"
 )
 
 func main() {

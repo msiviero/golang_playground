@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "internal/grpc";
+
+service PointService {
+  rpc ListPoints(PointServiceRequest) returns (stream PointServiceResponse) {}
+}
+
+message PointServiceRequest {}
+
+message PointServiceResponse {
+  Point point = 1;
+}
+
+message Point {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}
