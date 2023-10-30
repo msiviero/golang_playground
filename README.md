@@ -10,5 +10,10 @@ Clean the build directory
 make clean
 ```
 
+Generate grpc src
+``` bash
+make grpc
+```
+
 ## TODO
 - use wire for dependecy injection

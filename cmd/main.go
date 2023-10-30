@@ -1,9 +1,19 @@
 package main
 
-import "dev.msiviero/example/internal/app"
+import (
+	"dev.msiviero/example/internal/app"
+)
 
 func main() {
-	app := app.NewApp()
+	app, err := InitializeApp()
+
+	if err != nil {
+		panic(err)
+	}
 
 	app.Run()
+}
+
+func InitializeApp() (app.App, error) {
+	return app.App{}, nil
 }

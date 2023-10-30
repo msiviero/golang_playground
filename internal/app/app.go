@@ -6,10 +6,10 @@ import (
 
 type App struct{}
 
-func NewApp() *App {
-	return &App{}
-}
-
 func (a *App) Run() {
 	grpc_server.StartGrpcServer()
+}
+
+func NewApp() (App, error) {
+	return App{}, nil
 }
