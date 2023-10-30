@@ -1,5 +1,5 @@
 BINARY_NAME=main
- 
+
 build:
 	make clean
 	go mod tidy

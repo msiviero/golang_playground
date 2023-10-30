@@ -1,9 +1,15 @@
 package app
 
-type App struct {
-	Name string
+import (
+	"dev.msiviero/example/internal/grpc_server"
+)
+
+type App struct{}
+
+func NewApp() *App {
+	return &App{}
 }
 
-func (a *App) GetName() string {
-	return a.Name
+func (a *App) Run() {
+	grpc_server.StartGrpcServer()
 }
