@@ -1,17 +1,17 @@
 syntax = "proto3";
 option go_package = "internal/grpc";
 
-service PointService {
-  rpc ListPoints(PointServiceRequest) returns (stream PointServiceResponse) {}
+service UserRoute {
+  rpc GetUser(UserRouteRequest) returns (UserRouteReply) {}
 }
 
-message PointServiceRequest {}
+message UserRouteRequest {}
 
-message PointServiceResponse {
-  Point point = 1;
+message UserRouteReply {
+  UserMessage user = 1;
 }
 
-message Point {
-  int32 latitude = 1;
-  int32 longitude = 2;
+message UserMessage {
+  int32 age = 1;
+  string name = 2;
 }
