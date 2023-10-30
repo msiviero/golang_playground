@@ -1,5 +1,7 @@
 BINARY_NAME=main
 
+.PHONY: build
+
 build:
 	make clean
 	go mod tidy
