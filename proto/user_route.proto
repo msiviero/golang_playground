@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "internal/grpc";
+
+import "util.proto";
+
+service UserRoute {
+  rpc GetUser(EmptyRequest) returns (UserMessage) {}
+}
+
+message UserMessage {
+  int32 age = 1;
+  string name = 2;
+}

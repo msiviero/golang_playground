@@ -13,10 +13,10 @@ import (
 )
 
 type GrpcServer struct {
-	userRoute userRouteServer
+	userRoute UserRoute
 }
 
-func NewGrpcServer(userRoute userRouteServer) GrpcServer {
+func NewGrpcServer(userRoute UserRoute) GrpcServer {
 	return GrpcServer{userRoute: userRoute}
 }
 

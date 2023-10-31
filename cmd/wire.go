@@ -13,7 +13,7 @@ func InitializeApp() app.App {
 
 	wire.Build(
 		app.NewApp,
-		grpc_server.NewUserRouteServer,
+		grpc_server.NewUserRoute,
 		grpc_server.NewGrpcServer,
 	)
 

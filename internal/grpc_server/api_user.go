@@ -7,15 +7,15 @@ import (
 	pb "dev.msiviero/example/internal/grpc"
 )
 
-type userRouteServer struct {
+type UserRoute struct {
 	pb.UnimplementedUserRouteServer
 }
 
-func NewUserRouteServer() userRouteServer {
-	return userRouteServer{}
+func NewUserRoute() UserRoute {
+	return UserRoute{}
 }
 
-func (UserRouteServer *userRouteServer) GetUser(context context.Context, in *pb.UserRouteRequest) (*pb.UserRouteReply, error) {
+func (UserRouteServer *UserRoute) GetUser(context context.Context, in *pb.EmptyRequest) (*pb.UserMessage, error) {
 	log.Printf("Received: %v", in)
-	return &pb.UserRouteReply{User: &pb.UserMessage{Name: "Marco", Age: 40}}, nil
+	return &pb.UserMessage{Name: "Marco", Age: 40}, nil
 }
