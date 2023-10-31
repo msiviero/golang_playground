@@ -12,7 +12,13 @@ import (
 	pb "dev.msiviero/example/internal/grpc"
 )
 
-func StartGrpcServer() {
+type GrpcServer struct{}
+
+func NewGrpcServer() GrpcServer {
+	return GrpcServer{}
+}
+
+func (*GrpcServer) Start() {
 
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", getPort()))
 

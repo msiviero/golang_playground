@@ -4,12 +4,14 @@ import (
 	"dev.msiviero/example/internal/grpc_server"
 )
 
-type App struct{}
-
-func (a *App) Run() {
-	grpc_server.StartGrpcServer()
+type App struct {
+	server grpc_server.GrpcServer
 }
 
-func NewApp() (App, error) {
-	return App{}, nil
+func NewApp(server grpc_server.GrpcServer) App {
+	return App{server: server}
+}
+
+func (app *App) Run() {
+	app.server.Start()
 }

@@ -6,7 +6,7 @@ build:
 	make clean
 	go mod tidy
 	make grpc
-	go build -o build/${BINARY_NAME} cmd/main.go
+	go build -o build/${BINARY_NAME} cmd/main.go cmd/wire_gen.go
  
 clean:
 	rm -rf build
