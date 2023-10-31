@@ -4,14 +4,17 @@ BINARY_NAME=main
 
 build:
 	make clean
-	go mod tidy
-	make grpc
-	wire cmd/wire.go
+	make deps
+	make code_gen
 	go build -o build/${BINARY_NAME} cmd/main.go cmd/wire_gen.go
  
+deps:
+	go mod tidy
+
 clean:
 	rm -rf build
 	go clean
 
-grpc:
+code_gen:
+	wire cmd/wire.go
 	protoc --go-grpc_out=. --go_out=. --proto_path=./proto ./proto/*.proto
