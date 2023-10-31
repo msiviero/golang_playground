@@ -24,7 +24,11 @@ Run unit test
 make test
 ```
 
-Strat the web ui to test invokations
+Start the web ui to test invokations
 ``` bash
 make grpc_ui
+```
+Apply migrations
+``` bash
+make migrate
 ```
