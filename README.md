@@ -16,4 +16,4 @@ make grpc
 ```
 
 # TODO
-- add mocking https://tutorialedge.net/golang/improving-your-tests-with-testify-go/
+- https://vektra.github.io/mockery/latest/
