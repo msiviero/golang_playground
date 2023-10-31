@@ -12,13 +12,15 @@ import (
 	pb "dev.msiviero/example/internal/grpc"
 )
 
-type GrpcServer struct{}
-
-func NewGrpcServer() GrpcServer {
-	return GrpcServer{}
+type GrpcServer struct {
+	userRoute userRouteServer
 }
 
-func (*GrpcServer) Start() {
+func NewGrpcServer(userRoute userRouteServer) GrpcServer {
+	return GrpcServer{userRoute: userRoute}
+}
+
+func (s *GrpcServer) Start() {
 
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", getPort()))
 
@@ -28,7 +30,7 @@ func (*GrpcServer) Start() {
 
 	server := grpc.NewServer()
 
-	pb.RegisterUserRouteServer(server, &userRouteServer{})
+	pb.RegisterUserRouteServer(server, &s.userRoute)
 
 	log.Printf("server listening at %v", listener.Addr())
 	if err := server.Serve(listener); err != nil {

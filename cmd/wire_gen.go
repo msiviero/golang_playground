@@ -14,7 +14,8 @@ import (
 // Injectors from wire.go:
 
 func InitializeApp() app.App {
-	grpcServer := grpc_server.NewGrpcServer()
+	userRouteServer := grpc_server.NewUserRouteServer()
+	grpcServer := grpc_server.NewGrpcServer(userRouteServer)
 	appApp := app.NewApp(grpcServer)
 	return appApp
 }

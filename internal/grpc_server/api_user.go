@@ -11,6 +11,10 @@ type userRouteServer struct {
 	pb.UnimplementedUserRouteServer
 }
 
+func NewUserRouteServer() userRouteServer {
+	return userRouteServer{}
+}
+
 func (UserRouteServer *userRouteServer) GetUser(context context.Context, in *pb.UserRouteRequest) (*pb.UserRouteReply, error) {
 	log.Printf("Received: %v", in)
 	return &pb.UserRouteReply{User: &pb.UserMessage{Name: "Marco", Age: 40}}, nil
