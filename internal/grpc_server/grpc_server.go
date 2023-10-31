@@ -9,14 +9,15 @@ import (
 
 	"google.golang.org/grpc"
 
+	"dev.msiviero/example/internal/api/user"
 	pb "dev.msiviero/example/internal/grpc"
 )
 
 type GrpcServer struct {
-	userRoute UserRoute
+	userRoute user.UserRoute
 }
 
-func NewGrpcServer(userRoute UserRoute) GrpcServer {
+func NewGrpcServer(userRoute user.UserRoute) GrpcServer {
 	return GrpcServer{userRoute: userRoute}
 }
 

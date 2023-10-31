@@ -7,6 +7,7 @@
 package main
 
 import (
+	"dev.msiviero/example/internal/api/user"
 	"dev.msiviero/example/internal/app"
 	"dev.msiviero/example/internal/grpc_server"
 )
@@ -14,7 +15,7 @@ import (
 // Injectors from wire.go:
 
 func InitializeApp() app.App {
-	userRoute := grpc_server.NewUserRoute()
+	userRoute := user.NewUserRoute()
 	grpcServer := grpc_server.NewGrpcServer(userRoute)
 	appApp := app.NewApp(grpcServer)
 	return appApp
