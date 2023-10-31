@@ -2,7 +2,7 @@
 
 Build the project:
 ``` bash
-make build
+make
 ```
 
 Clean the build directory
@@ -10,10 +10,12 @@ Clean the build directory
 make clean
 ```
 
-Generate grpc src
+Generate grpc and wire src
 ``` bash
-make grpc
+make code_gen
 ```
 
-# TODO
-- https://vektra.github.io/mockery/latest/
+Run unit test
+``` bash
+make test
+```

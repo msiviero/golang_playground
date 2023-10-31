@@ -2,13 +2,17 @@ package user
 
 import pb "dev.msiviero/example/internal/grpc"
 
-type UserService struct {
+type UserService interface {
+	GetUser() pb.UserMessage
+}
+
+type UserServiceImpl struct {
 }
 
 func NewUserService() UserService {
-	return UserService{}
+	return UserServiceImpl{}
 }
 
-func (UserService) GetUser() pb.UserMessage {
+func (UserServiceImpl) GetUser() pb.UserMessage {
 	return pb.UserMessage{Age: 40, Name: "Marco"}
 }
