@@ -17,4 +17,3 @@ make grpc
 
 # TODO
 - add mocking https://tutorialedge.net/golang/improving-your-tests-with-testify-go/
-- better module split by api

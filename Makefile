@@ -6,7 +6,7 @@ build:
 	make clean
 	make code_gen
 	make deps
-	go build -o build/${BINARY_NAME} cmd/main.go cmd/wire_gen.go
+	go build -o build/${BINARY_NAME} ./cmd
  
 deps:
 	go mod tidy
