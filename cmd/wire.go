@@ -14,8 +14,9 @@ func InitializeApp() app.App {
 
 	wire.Build(
 		app.NewApp,
-		user.NewUserRoute,
 		grpc_server.NewGrpcServer,
+		user.NewUserRoute,
+		user.NewUserService,
 	)
 
 	return app.App{}
