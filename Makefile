@@ -4,8 +4,8 @@ BINARY_NAME=main
 
 build:
 	make clean
-	make deps
 	make code_gen
+	make deps
 	go build -o build/${BINARY_NAME} cmd/main.go cmd/wire_gen.go
  
 deps:
