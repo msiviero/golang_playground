@@ -1,12 +1,10 @@
-BINARY_NAME=main
-
 .PHONY: build
 
 build:
 	make clean
 	make code_gen
 	make deps
-	go build -o build/${BINARY_NAME} ./cmd
+	go build -o build/server ./cmd
  
 deps:
 	go mod tidy
