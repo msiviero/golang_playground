@@ -22,5 +22,5 @@ test:
 	go test -v \
 		./internal/api/user
 
-grpc_client:
+grpc_ui:
 	grpcui -plaintext -import-path=/Users/marco.siviero/Downloads/go-playground/proto -proto=user_route.proto 127.0.0.1:50051
