@@ -19,6 +19,7 @@ code_gen:
 	protoc --go-grpc_out=. --go_out=. --proto_path=./proto ./proto/*.proto
 
 test:
+	mockgen -source=/internal/api/user/user_service.go
 	go test -v \
 		./internal/api/user
 

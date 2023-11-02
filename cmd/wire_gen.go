@@ -10,12 +10,14 @@ import (
 	"dev.msiviero/example/internal/api/user"
 	"dev.msiviero/example/internal/app"
 	"dev.msiviero/example/internal/grpc_server"
+	"dev.msiviero/example/internal/sql"
 )
 
 // Injectors from wire.go:
 
 func InitializeApp() app.App {
-	userService := user.NewUserService()
+	db := sql.NewSql()
+	userService := user.NewUserService(db)
 	userRoute := user.NewUserRoute(userService)
 	grpcServer := grpc_server.NewGrpcServer(userRoute)
 	appApp := app.NewApp(grpcServer)

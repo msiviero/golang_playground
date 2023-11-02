@@ -1,18 +1,52 @@
 package user
 
-import pb "dev.msiviero/example/internal/grpc_gen"
+import (
+	"log"
 
-type UserService interface {
-	GetUser() pb.UserMessage
+	"github.com/jmoiron/sqlx"
+
+	pb "dev.msiviero/example/internal/grpc_gen"
+)
+
+type UserService struct {
+	db *sqlx.DB
 }
 
-type UserServiceImpl struct {
+func NewUserService(db *sqlx.DB) UserService {
+	return UserService{db: db}
 }
 
-func NewUserService() UserService {
-	return UserServiceImpl{}
+func (userService UserService) GetUser(id int32) pb.UserMessage {
+
+	user := User{}
+
+	err := userService.db.Get(&user, "SELECT * FROM users WHERE id=?", id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return pb.UserMessage{
+		Id:    user.Id,
+		Age:   user.Age,
+		Name:  user.Name,
+		Email: user.Email,
+	}
 }
 
-func (UserServiceImpl) GetUser() pb.UserMessage {
-	return pb.UserMessage{Age: 40, Name: "Marco"}
+func (userService UserService) PutUser(user *pb.UserMessage) error {
+	_, err := userService.db.NamedExec("INSERT INTO users (age, name, email) VALUES (:age, :name, :email)", User{
+		Age:   user.Age,
+		Name:  user.Name,
+		Email: user.Email,
+	})
+
+	return err
+}
+
+type User struct {
+	Id    int32  `db:"id"`
+	Age   int32  `db:"age"`
+	Name  string `db:"name"`
+	Email string `db:"email"`
 }

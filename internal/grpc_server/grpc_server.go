@@ -44,11 +44,11 @@ func getPort() int64 {
 	if !ok {
 		return 50051
 	}
-	v, err := strconv.ParseInt(val, 10, 0)
+	port, err := strconv.ParseInt(val, 10, 0)
 
 	if err != nil {
 		fmt.Println("Error during conversion")
 		panic(err)
 	}
-	return v
+	return port
 }
