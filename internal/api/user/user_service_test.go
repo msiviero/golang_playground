@@ -26,7 +26,7 @@ func TestUserGetHandler(t *testing.T) {
 			AddRow(1, 40, "marco", "m.siviero83@gmail.com"),
 	)
 
-	actual := underTest.GetUser(1)
+	actual, _ := underTest.GetUser(1)
 
 	assert.Equal(t, actual.Age, int32(40))
 	assert.Equal(t, actual.Name, "marco")

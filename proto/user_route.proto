@@ -2,6 +2,9 @@ syntax = "proto3";
 option go_package = "internal/grpc_gen";
 
 service UserRoute {
+
+  rpc GetUsers(EmptyRequest) returns (stream UserMessage) {}
+
   rpc GetUser(UserRequest) returns (UserMessage) {}
 
   rpc PutUser(UserMessage) returns (EmptyReply) {}
@@ -19,3 +22,5 @@ message UserMessage {
 }
 
 message EmptyReply {}
+
+message EmptyRequest {}

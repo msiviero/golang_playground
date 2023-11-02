@@ -3,8 +3,6 @@ package user
 import (
 	"github.com/jmoiron/sqlx"
 
-	pb "dev.msiviero/example/internal/grpc_gen"
-
 	"go.uber.org/zap"
 )
 
@@ -16,7 +14,27 @@ func NewUserService(db *sqlx.DB) UserService {
 	return UserService{db: db}
 }
 
-func (userService UserService) GetUser(id int32) pb.UserMessage {
+func (userService UserService) GetUsers(cb func(User)) {
+	rows, err := userService.db.Queryx("SELECT * FROM users")
+
+	if err != nil {
+		zap.L().Error(err.Error())
+	}
+
+	for rows.Next() {
+		user := User{}
+
+		err = rows.StructScan(&user)
+
+		if err != nil {
+			zap.L().Error(err.Error())
+			continue
+		}
+		cb(user)
+	}
+}
+
+func (userService UserService) GetUser(id int32) (User, error) {
 
 	user := User{}
 	err := userService.db.Get(&user, "SELECT * FROM users WHERE id=?", id)
@@ -25,21 +43,11 @@ func (userService UserService) GetUser(id int32) pb.UserMessage {
 		zap.L().Error(err.Error())
 	}
 
-	return pb.UserMessage{
-		Id:    user.Id,
-		Age:   user.Age,
-		Name:  user.Name,
-		Email: user.Email,
-	}
+	return user, err
 }
 
-func (userService UserService) PutUser(user *pb.UserMessage) error {
-	_, err := userService.db.NamedExec("INSERT INTO users (age, name, email) VALUES (:age, :name, :email)", User{
-		Age:   user.Age,
-		Name:  user.Name,
-		Email: user.Email,
-	})
-
+func (userService UserService) PutUser(user User) error {
+	_, err := userService.db.NamedExec("INSERT INTO users (age, name, email) VALUES (:age, :name, :email)", user)
 	return err
 }
 
