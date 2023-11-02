@@ -14,7 +14,7 @@ clean:
 	go clean
 
 code_gen:
-	rm -rf ./internal/grpc
+	rm -rf ./internal/grpc_gen
 	wire cmd/wire.go
 	protoc --go-grpc_out=. --go_out=. --proto_path=./proto ./proto/*.proto
 

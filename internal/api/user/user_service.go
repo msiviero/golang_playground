@@ -1,6 +1,6 @@
 package user
 
-import pb "dev.msiviero/example/internal/grpc"
+import pb "dev.msiviero/example/internal/grpc_gen"
 
 type UserService interface {
 	GetUser() pb.UserMessage

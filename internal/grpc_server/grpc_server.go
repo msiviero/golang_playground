@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc"
 
 	"dev.msiviero/example/internal/api/user"
-	pb "dev.msiviero/example/internal/grpc"
+	pb "dev.msiviero/example/internal/grpc_gen"
 )
 
 type GrpcServer struct {
