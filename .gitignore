@@ -1,3 +1,3 @@
 build
 examples
-internal/grpc
+internal/grpc_gen
