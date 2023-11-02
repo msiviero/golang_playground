@@ -1,11 +1,11 @@
 package user
 
 import (
-	"log"
-
 	"github.com/jmoiron/sqlx"
 
 	pb "dev.msiviero/example/internal/grpc_gen"
+
+	"go.uber.org/zap"
 )
 
 type UserService struct {
@@ -19,11 +19,10 @@ func NewUserService(db *sqlx.DB) UserService {
 func (userService UserService) GetUser(id int32) pb.UserMessage {
 
 	user := User{}
-
 	err := userService.db.Get(&user, "SELECT * FROM users WHERE id=?", id)
 
 	if err != nil {
-		log.Fatal(err)
+		zap.L().Error(err.Error())
 	}
 
 	return pb.UserMessage{
