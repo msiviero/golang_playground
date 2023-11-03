@@ -26,4 +26,4 @@ migrate:
 	migrate -path database/migration/ -database "mysql://root:example@tcp(127.0.0.1:3306)/go_playground?query" -verbose up
 
 grpc_ui:
-	grpcui -plaintext -import-path=/Users/marco.siviero/Downloads/go-playground/proto -proto=user_route.proto 127.0.0.1:50051
+	grpcui -plaintext -import-path=./proto -proto=user_route.proto 127.0.0.1:50051
